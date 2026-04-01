@@ -32,7 +32,7 @@ public class SecurityConfig {
 
         // ✅ IMPORTANT: allow FRONTEND URL (not backend)
         config.setAllowedOrigins(List.of(
-            "https://ecommerce-frontend-production-7e09.up.railway.app"
+            "https://ecommerce-frontend-main1-production.up.railway.app"
         ));
 
         // ✅ allow all required methods
