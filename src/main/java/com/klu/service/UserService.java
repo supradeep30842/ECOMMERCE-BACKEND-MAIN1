@@ -2,6 +2,7 @@ package com.klu.service;
 
 import org.springframework.stereotype.Service;
 
+import com.klu.exception.InvalidCredentialsException;
 import com.klu.model.User;
 import com.klu.repository.UserRepository;
 
@@ -22,9 +23,12 @@ public class UserService {
     public User login(String email, String password) {
         User user = userRepository.findByEmail(email);
 
-        if(user != null && user.getPassword().equals(password)) {
-            return user;
+        if (user == null) {
+            throw new InvalidCredentialsException("No account found with that email address");
         }
-        return null;
+        if (!user.getPassword().equals(password)) {
+            throw new InvalidCredentialsException("Incorrect password");
+        }
+        return user;
     }
 }

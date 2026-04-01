@@ -1,5 +1,6 @@
 package com.klu.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,8 @@ public class AuthController {
 
     // Login
     @PostMapping("/login")
-    public User login(@RequestBody User user) {
-        return userService.login(user.getEmail(), user.getPassword());
+    public ResponseEntity<User> login(@RequestBody User user) {
+        User loggedIn = userService.login(user.getEmail(), user.getPassword());
+        return ResponseEntity.ok(loggedIn);
     }
 }
